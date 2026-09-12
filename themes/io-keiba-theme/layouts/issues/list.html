@@ -1,0 +1,29 @@
+{{ define "main" }}
+  <div class="mt-6 w-full px-6">
+    <h1 class="mb-6 text-2xl font-semibold">すべての特集号</h1>
+    <div class="grid grid-cols-2 gap-x-4 gap-y-6">
+      {{ range .Pages }}
+        <a href="{{ .RelPermalink }}">
+          <div
+            class="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-xl bg-slate-50 px-4 pt-4"
+          >
+            {{ $thumbnail := (.Resources.GetMatch "thumbnail.jpg").Process "avif" }}
+            <img
+              src="{{ $thumbnail.RelPermalink }}"
+              class="rounded-sm drop-shadow-xl"
+            />
+            <div
+              class="absolute right-0 bottom-0 left-0 mx-auto h-8 w-full bg-linear-to-b from-slate-50/0 to-slate-50"
+            ></div>
+          </div>
+          <div class="mt-2 px-1">
+            <h3 class="font-medium">{{ .Title }}</h3>
+            <span class="text-xs font-light text-slate-400"
+              >{{ .Params.info }}</span
+            >
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

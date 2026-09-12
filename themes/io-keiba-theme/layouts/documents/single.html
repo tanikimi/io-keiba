@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <!-- タイトル部 -->
+  <div class="mt-6 mb-12 w-full px-6">
+    <h1 class="mb-4 text-2xl font-semibold" data-pagefind-meta="title">
+      {{ .Title }}
+    </h1>
+    {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+    {{ $dateHuman := .Date | time.Format ":date_long" }}
+    <time
+      class="block text-xs font-light text-slate-400"
+      datetime="{{ $dateMachine }}"
+      >最終更新:
+      {{ $dateHuman }}
+    </time>
+  </div>
+  <div class="w-full px-6">
+    <!-- 本文 -->
+    {{ partial "content.html" . }}
+    <!-- シェア欄 -->
+    {{ partial "share.html" . }}
+  </div>
+{{ end }}

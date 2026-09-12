@@ -1,0 +1,2 @@
+{{ $src := (.Page.Resources.GetMatch (.Get "file")).Process "avif" }}
+<img src="{{ $src.RelPermalink }}" class="my-6 rounded-lg" />

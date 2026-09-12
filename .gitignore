@@ -1,0 +1,23 @@
+# Hugo
+/public/
+/resources/_gen/
+/.hugo_build.lock
+
+# Hugo generated stats
+/hugo_stats.json
+
+# Node
+/node_modules/
+
+# OS
+.DS_Store
+
+# Editor
+.zed/
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.*
+!.env.example

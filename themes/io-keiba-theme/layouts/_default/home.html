@@ -1,0 +1,270 @@
+{{ define "main" }}
+  <!-- ヒーロー -->
+  {{ $vol := len (where site.RegularPages "Section" "issues") }}
+  {{ $pickupIssue := index (where site.RegularPages "Section" "issues") 0 }}
+  <a href="{{ $pickupIssue.RelPermalink }}" class="block w-full px-4">
+    <div
+      class="relative max-h-96 w-full overflow-hidden rounded-xl bg-green-50 px-6 pt-6"
+    >
+      <div class="mb-6 h-1/2 px-2">
+        <h2 class="text-xl font-semibold text-green-900">
+          {{ $pickupIssue.Title }}
+        </h2>
+        <div class="mt-1 flex justify-between font-light text-green-600">
+          <span class="text-sm">{{ $pickupIssue.Params.info }}</span>
+          <span class="text-sm">vol.{{ $vol }}</span>
+        </div>
+      </div>
+      {{ $thumbnail := ($pickupIssue.Resources.GetMatch "thumbnail.jpg").Process "avif" }}
+      <img src="{{ $thumbnail.RelPermalink }}" class="rounded drop-shadow-xl" />
+      <div
+        class="absolute right-0 bottom-0 left-0 mx-auto h-8 w-full bg-linear-to-b from-green-50/0 to-green-50"
+      ></div>
+    </div>
+  </a>
+
+  <!-- 新着記事 -->
+  <div class="mt-12 w-full px-6">
+    <h2 class="mb-2 text-xl font-semibold">新着記事</h2>
+    {{ range first 5 (where site.RegularPages "Section" "articles") }}
+      <article>
+        <a
+          href="{{ .RelPermalink }}"
+          class="block border-b border-dashed border-b-slate-300 py-4"
+        >
+          <div class="flex w-full items-center gap-4">
+            {{ $thumbnail := (.Resources.GetMatch "thumbnail.jpg").Process "avif" }}
+            <img
+              src="{{ $thumbnail.RelPermalink }}"
+              class="h-18 w-24 shrink-0 rounded object-cover"
+            />
+            <div class="flex flex-col justify-between">
+              <h3 class="mb-2 line-clamp-3 leading-tight font-medium">
+                {{ .Title }}
+              </h3>
+              <div class="text-xs font-light text-slate-400">
+                {{ (index (.GetTerms "series") 0).LinkTitle }}
+              </div>
+            </div>
+          </div>
+        </a>
+      </article>
+    {{ end }}
+    <!-- すべて見る -->
+    <div class="flex justify-center">
+      <a
+        href="/articles"
+        class="mt-8 flex items-center justify-center text-sm font-medium text-green-500"
+      >
+        <div>すべて見る</div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-right block h-4"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- 記者 -->
+  <div class="mt-12 w-full px-6">
+    <div class="mb-2 flex w-full items-center justify-between">
+      <h2 class="text-xl font-semibold">記者</h2>
+      <button id="shuffle" class="cursor-pointer rounded-full bg-slate-100 p-2">
+        <img src="/icon/refresh-cw.svg" class="h-4" />
+      </button>
+    </div>
+    <div class="flex flex-col">
+      {{ range where site.RegularPages "Section" "writers" }}
+        <a
+          href="{{ .RelPermalink }}"
+          class="random flex hidden items-center gap-4 border-b border-dashed border-b-slate-300 py-4"
+        >
+          {{ $icon := (.Resources.GetMatch "icon.jpg").Process "avif" }}
+          <img src="{{ $icon.RelPermalink }}" class="w-10 rounded-full" />
+          <div class="">
+            <h3 class="font-medium">{{ .Title }}</h3>
+            <span class="text-xs font-light text-slate-400">
+              {{ .Params.bio }}
+            </span>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+    <!-- すべて見る -->
+    <div class="flex justify-center">
+      <a
+        href="/writers"
+        class="mt-8 flex items-center justify-center text-sm font-medium text-green-500"
+      >
+        <div>すべて見る</div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-right block h-4"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- 過去の特集号 -->
+  <div class="mt-12 w-full px-6">
+    <h2 class="mb-6 text-xl font-semibold">過去の特集号</h2>
+    <div class="grid grid-cols-2 gap-x-4 gap-y-6">
+      <!-- 最新のもののみ除外（最上部に表示されているため）して、新規4件を表示 -->
+      {{ range first 4 (after 1 (where site.RegularPages "Section" "issues")) }}
+        <a href="{{ .RelPermalink }}">
+          <div
+            class="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-xl bg-slate-50 px-4 pt-4"
+          >
+            {{ $thumbnail := (.Resources.GetMatch "thumbnail.jpg").Process "avif" }}
+            <img
+              src="{{ $thumbnail.RelPermalink }}"
+              class="rounded-sm drop-shadow-xl"
+            />
+            <div
+              class="absolute right-0 bottom-0 left-0 mx-auto h-8 w-full bg-linear-to-b from-slate-50/0 to-slate-50"
+            ></div>
+          </div>
+          <div class="mt-2 px-1">
+            <h3 class="font-medium">{{ .Title }}</h3>
+            <span class="text-xs font-light text-slate-400"
+              >{{ .Params.info }}</span
+            >
+          </div>
+        </a>
+      {{ end }}
+    </div>
+    <!-- すべて見る -->
+    <div class="flex justify-center">
+      <a
+        href="/issues"
+        class="mt-8 flex items-center justify-center text-sm font-medium text-green-500"
+      >
+        <div>すべて見る</div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-right block h-4"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ドキュメント -->
+  <div class="mt-12 w-full px-6">
+    <h2 class="mb-6 text-xl font-semibold">ドキュメント</h2>
+    <div class="grid grid-cols-2 gap-2">
+      <a
+        class="flex h-24 items-center justify-center rounded-xl bg-slate-50 p-4"
+      >
+        <h3 class="text-center">記者になる</h3>
+      </a>
+      <a
+        class="flex h-24 items-center justify-center rounded-xl bg-slate-50 p-4"
+      >
+        <h3 class="text-center">投稿の種類</h3>
+      </a>
+      <a
+        class="flex h-24 items-center justify-center rounded-xl bg-slate-50 p-4"
+      >
+        <h3 class="text-center">予想印を投稿する</h3>
+      </a>
+      <a
+        class="flex h-24 items-center justify-center rounded-xl bg-slate-50 p-4"
+      >
+        <h3 class="text-center">コラムを投稿する</h3>
+      </a>
+    </div>
+    <!-- すべて見る -->
+    <div class="flex justify-center">
+      <a
+        href="/documents"
+        class="mt-8 flex items-center justify-center text-sm font-medium text-green-500"
+      >
+        <div>すべて見る</div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-right block h-4"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- io競馬とは？ -->
+  <div class="mt-12 w-full px-6">
+    <h2 class="mb-6 text-xl font-semibold">io競馬とは？</h2>
+    <div class="leading-loose">
+      <p>io競馬はみんなで作る、参加型の競馬新聞です。</p>
+      <p>
+        Misskey.ioにアカウントがあれば、誰でも記者として予想やコラムを投稿することができます。
+      </p>
+      <p>io競馬であなたの競馬愛を掲載してみませんか？</p>
+    </div>
+    <!-- すべて見る -->
+    <div class="flex justify-center">
+      <a
+        href="/documents/about-iokeiba"
+        class="mt-8 flex items-center justify-center text-sm font-medium text-green-500"
+      >
+        <div>もっと詳しく</div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-right block h-4"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+{{ end }}

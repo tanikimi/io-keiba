@@ -1,0 +1,35 @@
+<button id="menu-button" type="button" class="relative z-20 cursor-pointer">
+  <img id="menu-icon" class="h-5" src="/icon/menu.svg" alt="" />
+</button>
+
+<a href="/" class="relative z-20">
+  <img class="h-5" src="/logo.svg" alt="" />
+</a>
+
+<button id="search-button" type="button" class="relative z-20 cursor-pointer">
+  <img id="search-icon" class="h-5" src="/icon/search.svg" alt="" />
+</button>
+
+<!-- ハンバーガーメニュー -->
+<nav
+  id="menu-overlay"
+  class="fixed inset-0 z-10 flex hidden justify-center bg-white pt-32"
+>
+  <ul class="flex h-full w-full max-w-xl flex-col gap-8 px-6">
+    <li class="ml-0.5 text-2xl"><a href="/articles">記事</a></li>
+    <li class="ml-0.5 text-2xl"><a href="/writers">記者</a></li>
+    <li class="ml-0.5 text-2xl"><a href="/issues">特集号</a></li>
+    <li class="ml-0.5 text-2xl"><a href="/documents">ドキュメント</a></li>
+    <li class="ml-0.5 text-2xl">
+      <a href="/documents/about-iokeiba">io競馬とは</a>
+    </li>
+    <li class="mt-auto mb-6 ml-0.5 text-xs text-slate-400">
+      @2026 io競馬 編集部
+    </li>
+  </ul>
+</nav>
+
+<!-- 検索画面 -->
+<nav id="search-overlay" class="fixed inset-0 z-10 hidden bg-white pt-20">
+  {{ partial "pagefind-search.html" . }}
+</nav>

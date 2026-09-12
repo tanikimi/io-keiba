@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <div class="mt-6 w-full px-6">
+    <h1 class="mb-2 text-2xl font-semibold">すべての記者</h1>
+    {{ range .Pages }}
+      <a
+        href="{{ .RelPermalink }}"
+        class="random flex items-center gap-4 border-b border-dashed border-b-slate-300 py-4"
+      >
+        {{ $icon := (.Resources.GetMatch "icon.jpg").Process "avif" }}
+        <img src="{{ $icon.RelPermalink }}" class="w-10 rounded-full" />
+        <div class="">
+          <h3 class="font-medium">{{ .Title }}</h3>
+          <span class="text-xs font-light text-slate-400">
+            {{ .Params.bio }}
+          </span>
+        </div>
+      </a>
+    {{ end }}
+
+  </div>
+{{ end }}

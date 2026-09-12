@@ -1,0 +1,18 @@
+<div class="mt-12 flex w-full justify-center gap-4 rounded-full">
+  <!-- Misskey Share -->
+  <a
+    href="https://misskey-hub.net/share/?text={{ .Title }} | io競馬&url={{ .Permalink }}&visibility=public&localOnly=0&manualInstance=Misskey.io"
+    class="w-10 rounded-full bg-slate-100 p-1"
+    target="_blank"
+  >
+    <img src="/icon/misskey-icon.png" class="w-full" />
+  </a>
+  <!-- クリップボードにコピー -->
+  <button
+    type="button"
+    class="copy-button w-10 cursor-pointer rounded-full bg-slate-100 p-2"
+    data-copy="{{ .Permalink }}"
+  >
+    <img src="/icon/link.svg" class="w-full" />
+  </button>
+</div>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang }}" dir="{{ site.Language.Direction }}">
+  <head>
+    {{ partial "head.html" . }}
+    {{ with (templates.Defer (dict "key" "global")) }}
+      {{ partial "head/css.html" . }}
+    {{ end }}
+  </head>
+
+  <body>
+    <div class="flex flex-col items-center">
+      <div class="w-full max-w-xl">
+        <header
+          class="sticky top-0 z-30 flex items-center justify-between bg-white px-6 py-6"
+        >
+          {{ partial "header.html" . }}
+        </header>
+
+        <main>{{ block "main" . }}{{ end }}</main>
+
+        <footer class="mt-16 mb-6 px-6">
+          {{ partialCached "footer.html" . }}
+        </footer>
+      </div>
+    </div>
+    {{ if .IsHome }}
+      <script src="/js/random.js"></script>
+    {{ end }}
+    <!-- TODO: あとで読み込む場所をちゃんと切り分け -->
+    <script src="/js/copy.js"></script>
+    <script src="/js/header.js"></script>
+  </body>
+</html>

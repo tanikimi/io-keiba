@@ -1,0 +1,14 @@
+{{ $url := .Get "url" }}
+{{ if .Get "block" }}
+  <a
+    href="{{ $url }}"
+    class="my-4 flex w-full items-center justify-between rounded-lg bg-slate-50 p-4"
+  >
+    <span>{{ .Get "text" }}</span>
+    <img src="/icon/chevron-right.svg" class="h-5" />
+  </a>
+{{ else }}
+  <a href="{{ $url }}" class="leading-relaxed text-green-500 underline"
+    >{{ .Get "text" }}</a
+  >
+{{ end }}

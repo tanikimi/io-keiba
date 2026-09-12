@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "hugo_stats.json";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Gen Interface JP", sans-serif;
+}
+
+/* pagefind */
+
+#search-overlay {
+  --pf-font: "Gen Interface JP", sans-serif;
+  --pf-text-secondary: oklch(70.4% 0.04 256.788);
+  --pf-border-focus: oklch(86.9% 0.022 252.894);
+  --pf-border-radius: 12px;
+  --pf-hover: none;
+  --pf-shadow-sm: none;
+  --pf-shadow-md: none;
+  --pf-shadow-lg: none;
+}
+/* 検索欄 */
+.pf-input-wrapper {
+  --pf-text: black;
+  --pf-icon-search: url("/icon/search.svg");
+  --pf-border: oklch(86.9% 0.022 252.894);
+  --pf-outline-focus: oklch(72.3% 0.219 149.579);
+  --pf-outline-width: 1px;
+  --pf-input-height: 45px;
+}

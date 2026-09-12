@@ -1,0 +1,58 @@
+{{ define "main" }}
+  <!-- タイトル部 -->
+  <div class="my-6 w-full px-6">
+    {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+    {{ $dateHuman := .Date | time.Format ":date_long" }}
+    <time
+      class="mb-4 block text-xs font-light text-slate-400"
+      datetime="{{ $dateMachine }}"
+      >{{ $dateHuman }}
+    </time>
+    <h1 class="mb-2 text-2xl font-semibold" data-pagefind-meta="title">
+      {{ .Title }}
+    </h1>
+    <a class="mb-2 block text-sm font-light text-slate-400"
+      >{{ (index (.GetTerms "series") 0).LinkTitle }}</a
+    >
+  </div>
+  <!-- サムネイル -->
+  <div class="mb-12 px-4">
+    {{ $thumbnail := (.Resources.GetMatch "thumbnail.jpg").Process "avif" }}
+    <img
+      src="{{ $thumbnail.RelPermalink }}"
+      class="aspect-4/3 rounded-lg object-cover"
+    />
+  </div>
+  <div class="w-full px-6">
+    <!-- 本文 -->
+    {{ partial "content.html" . }}
+    <!-- 記者欄 -->
+    <div class="mt-12 flex flex-col gap-4">
+      {{ range .Params.writerID }}
+        {{ $writerID := . }}
+        <!-- writers配下のページから、$writerIDと共通するwritersIDを持つページを$writerに代入 -->
+        {{ $writer := index (where (site.GetPage "writers").RegularPages "Params.writerID" $writerID) 0 }}
+        <a
+          href="{{ $writer.RelPermalink }}"
+          class="w-full rounded-xl bg-slate-50 p-4"
+        >
+          <div class="flex gap-4">
+            {{ $icon := ($writer.Resources.GetMatch "icon.jpg").Process "avif" }}
+            <img
+              src="{{ $icon.RelPermalink }}"
+              class="h-10 w-10 rounded-full"
+            />
+            <div>
+              <h2 class="mb-2 block">{{ $writer.Title }}</h2>
+              <p class="text-sm font-light">
+                {{ $writer.Params.bio }}
+              </p>
+            </div>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+    <!-- シェア欄 -->
+    {{ partial "share.html" . }}
+  </div>
+{{ end }}
