@@ -1,0 +1,19 @@
+{{ $url := .Get "url" }}
+{{ if .Get "newtab" }}
+  <a
+    href="{{ $url }}"
+    class="my-4 flex w-full items-center justify-between rounded-lg bg-slate-50 p-4"
+    target="_blank"
+  >
+    <span>{{ .Get "text" }}</span>
+    <img src="/icon/chevron-right.svg" class="h-5" />
+  </a>
+{{ else }}
+  <a
+    href="{{ $url }}"
+    class="my-4 flex w-full items-center justify-between rounded-lg bg-slate-50 p-4"
+  >
+    <span>{{ .Get "text" }}</span>
+    <img src="/icon/chevron-right.svg" class="h-5" />
+  </a>
+{{ end }}

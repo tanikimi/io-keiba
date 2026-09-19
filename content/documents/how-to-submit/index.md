@@ -10,13 +10,13 @@ draft = false
 
 詳しくは「記者になる」をご覧ください。
 
-{{< link url="/documents/become-a-writer" text="記者になる" block="true" >}}
+{{< block-link url="/documents/become-a-writer" text="記者になる" >}}
 
 ## 投稿の枠取り
 
 io競馬新聞に投稿する場合、投稿に先駆けて、**まず枠取りを行う必要があります**。
 
-編集部が{{< link url="https://misskey.io/channels/9b23jhiay8" text="Misskey.io 競馬部" >}} に募集ノートを投稿しますので、
+編集部が{{< link url="https://misskey.io/channels/9b23jhiay8" text="Misskey.io 競馬部" newtab="true">}} に募集ノートを投稿しますので、
 **そのノートにリプライで参加する旨をお伝えください**。
 
 編集部より、リプライに`:eyes_blink:`のカスタム絵文字でリアクションがつけば、枠取り完了です。
@@ -44,7 +44,13 @@ io競馬新聞に投稿する場合、投稿に先駆けて、**まず枠取り�
 
 投稿の種類については、「投稿の種類」のページからご確認ください。
 
-{{< link url="/" text="投稿の種類" block="true" >}}
+{{< block-link url="/" text="投稿の種類" block="true" >}}
+
+## 特殊記法について
+
+特殊記法を使うことで、投稿の文章を修飾することができます。
+
+{{< block-link url="/documents/markup" text="特殊記法について" block="true" >}}
 
 ## 投稿ガイドライン
 
@@ -52,7 +58,7 @@ io競馬新聞に投稿する場合、投稿に先駆けて、**まず枠取り�
 
 ただし、誤解やトラブルを避けるためのミニマルなガイドラインを設けています。投稿の際は一読の上、遵守していただきますようお願いいたします。
 
-{{< link url="/" text="投稿ガイドライン" block="true" >}}
+{{< block-link url="/documents/guideline" text="投稿ガイドライン" block="true" >}}
 
 ## 投稿の取り扱い
 
@@ -62,4 +68,4 @@ io競馬新聞に投稿する場合、投稿に先駆けて、**まず枠取り�
 
 投稿いただいた時点で投稿の取扱いについて同意したものとみなしますので、投稿の際は必ずご確認ください。
 
-{{< link url="/" text="投稿の取り扱いについて" block="true" >}}
+{{< block-link url="/" text="投稿の取り扱いについて" block="true" >}}
