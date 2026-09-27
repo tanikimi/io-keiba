@@ -38,4 +38,4 @@ io競馬であなたの競馬愛を掲載してみませんか？
 
 io競馬新聞は、記者の皆様からの投稿を編集部がまとめて発行しています。
 
-{{< block-link url="/" text="編集部より" >}}
+{{< block-link url="/documents/editorial-team" text="編集部" >}}
