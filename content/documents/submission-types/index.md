@@ -49,4 +49,4 @@ draft = false
 
 イベントの宣伝など、予想やコラム以外の投稿をご希望の方は編集部の`@minestrone`までご相談ください。
 
-{{< block-link url="/" text="編集部" >}}
+{{< block-link url="/documents/editorial-team" text="編集部" >}}
