@@ -3,7 +3,7 @@ title = 'io競馬 秋華賞号、ただいま準備中です！'
 date = '2026-09-28T16:08:42+09:00'
 series = '編集部より'
 writerID = ['ミネストローネ']
-issueID = '20261101'
+issueID = '20261002'
 draft = false
 +++
 
