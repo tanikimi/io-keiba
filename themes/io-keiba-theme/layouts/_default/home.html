@@ -91,7 +91,10 @@
           class="random flex hidden items-center gap-4 border-b border-dashed border-b-slate-300 py-4"
         >
           {{ $icon := (.Resources.GetMatch "icon.jpg").Process "avif" }}
-          <img src="{{ $icon.RelPermalink }}" class="w-10 rounded-full" />
+          <img
+            src="{{ $icon.RelPermalink }}"
+            class="h-10 w-10 rounded-full object-cover"
+          />
           <div class="">
             <h3 class="font-medium">{{ .Title }}</h3>
             <span class="text-xs font-light text-slate-400">

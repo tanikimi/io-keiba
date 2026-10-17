@@ -5,7 +5,10 @@
       class="flex w-full flex-col items-center rounded-xl bg-gray-50 px-6 py-8"
     >
       {{ $icon := (.Resources.GetMatch "icon.jpg").Process "avif" }}
-      <img src="{{ $icon.RelPermalink }}" class="mb-4 h-12 w-12 rounded-full" />
+      <img
+        src="{{ $icon.RelPermalink }}"
+        class="mb-4 h-12 w-12 rounded-full object-cover"
+      />
       <h1 class="mb-2 text-xl font-medium">{{ .Title }}</h1>
       <p class="text text-sm font-light">
         {{ .Params.bio }}
